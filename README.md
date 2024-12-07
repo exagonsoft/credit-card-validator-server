@@ -1,99 +1,172 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Credit Card Validator API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A **NestJS** application for validating credit card numbers using the **Luhn algorithm**, built with best practices in mind.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+![Node.js](https://img.shields.io/badge/Node.js-v23.x-green)
+![NestJS](https://img.shields.io/badge/NestJS-v10.x-red)
+![Jest](https://img.shields.io/badge/Testing-Jest-blue)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
-## Description
+---
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 🚀 Features
 
-## Project setup
+- **Credit Card Validation**: Validates credit card numbers using the Luhn algorithm.
+- **REST API**: Simple HTTP endpoint for validation.
+- **Global Validation**: Powered by NestJS `ValidationPipe`.
+- **Test Coverage**: Comprehensive unit tests with Jest.
+- **Extensible Architecture**: Built with NestJS modules for scalability.
 
-```bash
-$ npm install
+---
+
+## 🛠️ Installation
+
+Follow these steps to get started:
+
+1. **Clone the repository**:
+
+   ```bash
+   git clone https://github.com/exagonsoft/credit-card-validator-server.git
+   cd credit-card-validator-server
+   ```
+
+2. **Install dependencies**:
+
+   ```bash
+   npm install
+   ```
+
+3. **Run the application**:
+
+   ```bash
+   npm run start
+   ```
+
+4. **Access the server**:
+   Open your browser or Postman and go to:
+
+   ```markdown
+   http://localhost:3000
+   ```
+
+---
+
+## 📖 API Usage
+
+### POST `/credit-card/validate`
+
+Validate a credit card number.
+
+#### Request
+
+**Headers**:
+
+- `Content-Type: application/json`
+
+**Body**:
+
+```json
+{
+  "cardNumber": "4532015112830366"
+}
 ```
 
-## Compile and run the project
+#### Response
+
+- **Valid Card**:
+
+  ```json
+  {
+    "message": "Credit card number is valid"
+  }
+  ```
+
+- **Invalid Card**:
+
+  ```json
+  {
+    "statusCode": 400,
+    "message": "Invalid credit card number",
+    "error": "Bad Request"
+  }
+  ```
+
+---
+
+## 🧪 Running Tests
+
+Run unit tests using Jest:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm run test
 ```
 
-## Run tests
+Generate a test coverage report:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm run test:cov
 ```
 
-## Deployment
+---
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+## 🗂️ Project Structure
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g mau
-$ mau deploy
+```plaintext
+src/
+├── app.module.ts          # Main application module
+├── main.ts                # Bootstrap function
+├── credit-card/           # Credit card validation module
+│   ├── credit-card.controller.ts # API endpoint logic
+│   ├── credit-card.service.ts    # Core validation logic
+│   ├── dto/                     # Data Transfer Objects (DTOs)
+│       ├── validate-credit-card.dto.ts
+test/
+├── credit-card/           # Unit tests
+    ├── credit-card.controller.spec.ts
+    ├── credit-card.service.spec.ts
+    ├── validate-credit-card.dto.spec.ts
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+---
 
-## Resources
+## 🌐 Environment Variables
 
-Check out a few resources that may come in handy when working with NestJS:
+Set up the following environment variables if needed:
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+| Key    | Default | Description |
+| ------ | ------- | ----------- |
+| `PORT` | `3000`  | Server port |
 
-## Support
+---
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## 🛡️ Technologies Used
 
-## Stay in touch
+- **[Node.js](https://nodejs.org/)**: JavaScript runtime.
+- **[NestJS](https://nestjs.com/)**: Scalable server-side framework.
+- **[Jest](https://jestjs.io/)**: Testing framework.
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+---
 
-## License
+## 📚 Learning Resources
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+- [NestJS Documentation](https://docs.nestjs.com/)
+- [Luhn Algorithm](https://en.wikipedia.org/wiki/Luhn_algorithm)
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please fork the repository and submit a pull request.
+
+---
+
+## 🧑‍💻 Author
+
+**Msc. Alvaro Raul Martin**  
+[GitHub](https://github.com/exagonsoft) • [LinkedIn](https://www.linkedin.com/in/msc-alvaro-raul-martin-peraza-165114210/)
