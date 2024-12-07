@@ -16,18 +16,19 @@ A **NestJS** application for validating credit card numbers using the **Luhn alg
 - **Global Validation**: Powered by NestJS `ValidationPipe`.
 - **Test Coverage**: Comprehensive unit tests with Jest.
 - **Extensible Architecture**: Built with NestJS modules for scalability.
+- **Dockerized**: Easy to deploy with Docker and Docker Compose.
 
 ---
 
 ## 🛠️ Installation
 
-Follow these steps to get started:
+### Local Installation
 
 1. **Clone the repository**:
 
    ```bash
    git clone https://github.com/exagonsoft/credit-card-validator-server.git
-   cd credit-card-validator-server
+   cd credit-card-validator
    ```
 
 2. **Install dependencies**:
@@ -45,7 +46,49 @@ Follow these steps to get started:
 4. **Access the server**:
    Open your browser or Postman and go to:
 
-   ```markdown
+   ``` text
+   http://localhost:3000
+   ```
+
+---
+
+### Docker Deployment
+
+You can use Docker to easily run the application locally or deploy it to a server.
+
+1. **Build the Docker image**:
+
+   ```bash
+   docker build -t nestjs-app .
+   ```
+
+2. **Run the Docker container**:
+
+   ```bash
+   docker run -p 3000:3000 nestjs-app
+   ```
+
+3. **Access the server**:
+
+   ``` text
+   http://localhost:3000
+   ```
+
+---
+
+### Docker Compose Deployment
+
+If you are using Docker Compose, you can deploy the application along with additional services like databases or a reverse proxy.
+
+1. **Run Docker Compose**:
+
+   ```bash
+   docker-compose up -d
+   ```
+
+2. **Access the server**:
+
+   ``` text
    http://localhost:3000
    ```
 
