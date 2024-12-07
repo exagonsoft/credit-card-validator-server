@@ -1,0 +1,13 @@
+services:
+  app:
+    container_name: nestjs-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      FRONTEND_KEY: "credit-card-validator-client-key"
+    restart: always
