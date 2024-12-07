@@ -1,11 +1,12 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { CreditCardModule } from './credit-card/credit-card.module';
+import { ValidateHeaderMiddleware } from './validate-header/validate-header.middleware';
 
 @Module({
   imports: [CreditCardModule],
-  controllers: [AppController],
-  providers: [AppService],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(ValidateHeaderMiddleware).forRoutes('*');
+  }
+}
