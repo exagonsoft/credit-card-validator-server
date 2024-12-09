@@ -8,13 +8,14 @@ export async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
 
   app.enableCors({
-    origin: ['http://localhost:5173', 'https://your-frontend-domain.com'],
+    origin: ['http://localhost:3000'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
 
-  await app.listen(3000);
-  console.log('Server is running on http://localhost:3000');
+  const port = 5450;
+  await app.listen(port);
+  console.log(`Server is running on http://localhost:${port}`);
 }
 
 if (require.main === module) {
