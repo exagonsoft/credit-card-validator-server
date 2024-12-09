@@ -5,7 +5,6 @@ export class CreditCardService {
   validateCreditCardNumber(cardNumber: string): boolean {
     const sanitizedCardNumber = cardNumber.replace(/\D/g, '');
 
-    // Return false if the sanitized string is empty
     if (sanitizedCardNumber.length === 0) {
       return false;
     }

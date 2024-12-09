@@ -17,12 +17,12 @@ describe('CreditCardService', () => {
   });
 
   it('should return true for a valid credit card number', () => {
-    const validCardNumber = '4532015112830366'; // Passes Luhn algorithm
+    const validCardNumber = '4532015112830366';
     expect(service.validateCreditCardNumber(validCardNumber)).toBe(true);
   });
 
   it('should return false for an invalid credit card number', () => {
-    const invalidCardNumber = '1234567890123456'; // Fails Luhn algorithm
+    const invalidCardNumber = '1234567890123456';
     expect(service.validateCreditCardNumber(invalidCardNumber)).toBe(false);
   });
 
@@ -32,7 +32,7 @@ describe('CreditCardService', () => {
   });
 
   it('should return true for a valid card number with spaces or dashes', () => {
-    const formattedCardNumber = '4532 0151 1283 0366'; // Passes Luhn algorithm
+    const formattedCardNumber = '4532 0151 1283 0366';
     expect(service.validateCreditCardNumber(formattedCardNumber)).toBe(true);
   });
 

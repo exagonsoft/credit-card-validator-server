@@ -9,18 +9,18 @@ describe('ValidateCreditCardDto', () => {
 
   it('should validate a valid card number', async () => {
     const dto = new ValidateCreditCardDto();
-    dto.cardNumber = '4532015112830366'; // A valid credit card number for Luhn algorithm
+    dto.cardNumber = '4532015112830366';
 
     const errors = await validate(dto);
-    expect(errors.length).toBe(0); // No errors should be present
+    expect(errors.length).toBe(0);
   });
 
   it('should fail validation for an invalid card number', async () => {
     const dto = new ValidateCreditCardDto();
-    dto.cardNumber = '1234abcd'; // Invalid card number with non-digit characters
+    dto.cardNumber = '1234abcd';
 
     const errors = await validate(dto);
-    expect(errors.length).toBeGreaterThan(0); // Should have validation errors
+    expect(errors.length).toBeGreaterThan(0);
     expect(errors[0].constraints).toHaveProperty(
       'matches',
       'Credit card number must contain only digits',
@@ -29,10 +29,10 @@ describe('ValidateCreditCardDto', () => {
 
   it('should fail validation when card number is empty', async () => {
     const dto = new ValidateCreditCardDto();
-    dto.cardNumber = ''; // Empty card number
+    dto.cardNumber = '';
 
     const errors = await validate(dto);
-    expect(errors.length).toBeGreaterThan(0); // Should have validation errors
+    expect(errors.length).toBeGreaterThan(0);
     expect(errors[0].constraints).toHaveProperty(
       'isNotEmpty',
       'cardNumber should not be empty',
