@@ -5,14 +5,18 @@ import { ValidationPipe } from '@nestjs/common';
 export async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Enable global validation
   app.useGlobalPipes(new ValidationPipe());
+
+  app.enableCors({
+    origin: ['http://localhost:5173', 'https://your-frontend-domain.com'],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  });
 
   await app.listen(3000);
   console.log('Server is running on http://localhost:3000');
 }
 
-// Call the bootstrap function only when the file is executed directly
 if (require.main === module) {
   bootstrap();
 }

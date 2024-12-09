@@ -16,15 +16,21 @@ export class CreditCardController {
   validateCard(@Body() validateCreditCardDto: ValidateCreditCardDto) {
     const { cardNumber } = validateCreditCardDto;
 
-    const isValid = this.creditCardService.validateCreditCardNumber(cardNumber);
+    try {
+      const isValid =
+        this.creditCardService.validateCreditCardNumber(cardNumber);
 
-    if (!isValid) {
-      throw new HttpException(
-        'Invalid credit card number',
-        HttpStatus.BAD_REQUEST,
-      );
+      if (!isValid) {
+        throw new HttpException(
+          '🚫 Invalid credit card number',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+    } catch (error) {
+      console.log('Error Validating Card Number: ', error);
+      throw new Error(`Error validating CardNumber ${JSON.stringify(error)}`);
     }
 
-    return { message: 'Credit card number is valid' };
+    return { message: '✅ Credit card number is valid' };
   }
 }
